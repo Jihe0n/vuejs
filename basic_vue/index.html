@@ -1,26 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vue basic</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
 <body>
 
-    hello vuejs
+
     
-    <div id="app">
-        {{ name }}
+    <div id="app1">
+        {{ text }}
+        <button @click="btn">버튼</button>
+
+        <local-tag></local-tag>
     </div>
 
+
+  
+
+    <div id="app2">
+        {{ text }}
+        <button @click="btn">버튼</button>
+
+        <local-tag></local-tag>
+
+        <!-- <my-tag></my-tag> -->
+    </div>
+
+  
+
     <script>
-        new Vue({ // vue instance를 생성 
-            el:'#app',
-            data:{
-                name: 'heon'
+
+        // Vue.component('my-tag',{
+        //     template:`
+        //     <div>
+        //         {{ text }}
+        //         <button @click="btn()">버튼</button>
+        //     </div>
+        //     `,
+        //     data(){
+        //         return{
+        //             text: 'component'
+        //         } 
+        //     },
+        //     methods:{
+        //         btn(){
+        //             this.text = 'component update';
+        //         }
+        //     }
+        // });
+
+        const Conponent = {
+            template:`
+            <div>
+                {{ text }}
+                <button @click="btn()">버튼</button>
+            </div>
+            `,
+            data(){
+                return{
+                    text: 'component'
+                } 
+            },
+            methods:{
+                btn(){
+                    this.text = 'component update';
+                }
             }
+        }
+
+        const app1 = new Vue({ // vue instance를 생성 
+            el:'#app1',
+            components:{
+                'local-tag': Conponent,
+            },
+            data: {
+                text: 'app1',
+            },
+            methods: {
+                btn(){
+                    this.text = 'app1 update';
+                }
+            }
+            
+        })
+
+        const app2 = new Vue({ // vue instance를 생성 
+            el:'#app2',
+            data: {
+                text: 'app2',
+            },
+            methods: {
+                btn(){
+                    this.text = 'app2 update';
+                }
+            }
+            
         })
     </script>
 
