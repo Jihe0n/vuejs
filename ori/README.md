@@ -1,4 +1,4 @@
-# projectvue
+# ori
 
 ## Project setup
 ```
